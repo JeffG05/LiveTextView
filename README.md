@@ -1,7 +1,7 @@
 # LiveTextView
 Android Library to display text while it is being spoken
 
-[ ![Download](https://api.bintray.com/packages/jeffg05/Text-To-Speech-File/Live-Text-View/images/download.svg) ](https://bintray.com/jeffg05/Text-To-Speech-File/Live-Text-View/_latestVersion) [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
+[ ![Download](https://api.bintray.com/packages/jeffg05/Live-Text-View/Live-Text-View/images/download.svg?version=1.0.0) ](https://bintray.com/jeffg05/Live-Text-View/Live-Text-View/1.0.0/link) [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 
 
 ## Getting Started
