@@ -55,8 +55,8 @@ implementation 'com.jeffg.live_text_view:live-text-view:1.0.1'
 ```
 <com.jeffg.live_text_view.LiveTextView
       android:id="@+id/liveTextView"
-      android:layout_width="0dp"
-      android:layout_height="0dp"/>
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
 ```
 
 ### Initialise LiveTextView
