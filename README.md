@@ -27,7 +27,7 @@ Follow one of these steps to import Live-Text-View into your project:
 ### Gradle
 
 ```
-implementation 'com.jeffg.live_text_view:live-text-view:1.0.0'
+implementation 'com.jeffg.live_text_view:live-text-view:1.0.1'
 ```
 
 ### Maven
@@ -36,7 +36,7 @@ implementation 'com.jeffg.live_text_view:live-text-view:1.0.0'
 <dependency>
   <groupId>com.jeffg.live_text_view</groupId>
   <artifactId>live-text-view</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <type>pom</type>
 </dependency>
 ```
@@ -44,7 +44,7 @@ implementation 'com.jeffg.live_text_view:live-text-view:1.0.0'
 ### Ivy
 
 ```
-<dependency org='com.jeffg.live_text_view' name='live-text-view' rev='1.0.0'>
+<dependency org='com.jeffg.live_text_view' name='live-text-view' rev='1.0.1'>
   <artifact name='live-text-view' ext='pom' />
 </dependency>
 ```
