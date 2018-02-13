@@ -37,6 +37,8 @@ public class LiveTextView extends RelativeLayout {
     int smallTextSize;
     int largeTextSize;
     boolean animate;
+    boolean paused;
+    boolean playing;
 
     ArrayList<String> text;
     TextToSpeech textToSpeech;
@@ -83,6 +85,8 @@ public class LiveTextView extends RelativeLayout {
 
 
         currentIndex = 0;
+        paused = false;
+        playing = false;
 
         setTextColor(textColor);
         setBackgroundColor(backgroundColor);
@@ -121,8 +125,22 @@ public class LiveTextView extends RelativeLayout {
     public void setText(String text1) {
         String[] splitText = text1.split("\\.");
         text = new ArrayList<>();
-        for (String paragraph : splitText) {
-            text.add(Jsoup.parse(paragraph).text());
+        for (String sentence : splitText) {
+            text.add(Jsoup.parse(sentence).text());
+        }
+    }
+
+    public void setSentences(ArrayList<String> sentences) {
+        text = new ArrayList<>();
+        for (String sentence : sentences) {
+            text.add(Jsoup.parse(sentence).text());
+        }
+    }
+
+    public void setSentences(String[] sentences) {
+        text = new ArrayList<>();
+        for (String sentence : sentences) {
+            text.add(Jsoup.parse(sentence).text());
         }
     }
 
@@ -277,7 +295,7 @@ public class LiveTextView extends RelativeLayout {
 
     private void previous() {
         currentIndex = Math.max(0,currentIndex - 1);
-        textToSpeech.speak(text.get(currentIndex), TextToSpeech.QUEUE_FLUSH, null, text.get(currentIndex));
+        start();
 
         if (animate) {
             setTextViews(false);
@@ -289,7 +307,11 @@ public class LiveTextView extends RelativeLayout {
 
     public void pause() {
         if (textToSpeech != null) {
+            paused = true;
+            playing = false;
             textToSpeech.stop();
+            textToSpeech.shutdown();
+
         }
     }
 
@@ -298,6 +320,7 @@ public class LiveTextView extends RelativeLayout {
             textToSpeech.stop();
             textToSpeech.shutdown();
             currentIndex = 0;
+            playing = false;
         }
     }
 
@@ -308,6 +331,10 @@ public class LiveTextView extends RelativeLayout {
     public void fast_forwards() {
         pause();
         next();
+    }
+
+    public boolean isPlaying() {
+        return playing;
     }
 
     public void fast_rewind() {
@@ -322,7 +349,7 @@ public class LiveTextView extends RelativeLayout {
         if (currentIndex >= text.size()) {
             stop();
         } else {
-            textToSpeech.speak(text.get(currentIndex), TextToSpeech.QUEUE_FLUSH, null, text.get(currentIndex));
+            start();
             if (animate) {
                 setTextViews(true);
             } else {
@@ -346,7 +373,9 @@ public class LiveTextView extends RelativeLayout {
                         @Override
                         public void onDone(String s) {
                             Log.i("UTTERANCE", s);
-                            next();
+                            if (!paused) {
+                                next();
+                            }
                         }
 
                         @Override
@@ -354,6 +383,8 @@ public class LiveTextView extends RelativeLayout {
 
                         }
                     });
+                    paused = false;
+                    playing = true;
                     textToSpeech.speak(text.get(currentIndex), TextToSpeech.QUEUE_FLUSH, null, text.get(currentIndex));
                     setTextViews(null);
                 } else {
