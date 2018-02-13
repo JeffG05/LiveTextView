@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="3"
+    android:id="@+id/parent">
+
+    <TextView
+        android:id="@+id/previousTV"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:padding="16dp"/>
+
+    <TextView
+        android:id="@+id/currentTV"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:padding="16dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/nextTV"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:padding="16dp"/>
+
+</LinearLayout>

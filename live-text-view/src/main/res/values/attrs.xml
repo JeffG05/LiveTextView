@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LiveTextView">
+        <attr name="android:textColor" format="color"/>
+        <attr name="android:background" format="color"/>
+        <attr name="smallTextSize" format="integer"/>
+        <attr name="largeTextSize" format="integer"/>
+    </declare-styleable>
+
+</resources>
