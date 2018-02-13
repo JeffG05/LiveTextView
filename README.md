@@ -1,16 +1,33 @@
-# LiveTextView# LiveTextView
+# LiveTextView
 Android Library to display text while it is being spoken
 
 [ ![Download](https://api.bintray.com/packages/jeffg05/Text-To-Speech-File/Live-Text-View/images/download.svg) ](https://bintray.com/jeffg05/Text-To-Speech-File/Live-Text-View/_latestVersion) [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 
+
 ## Getting Started
 
+### First
+Enter this in your build.gradle (Project)
+
+```
+allprojects {
+    repositories {
+        maven {
+            url "https://dl.bintray.com/jeffg05/Live-Text-View"
+        }
+    }
+}
+```
+
+### Then
+
 Follow one of these steps to import Live-Text-View into your project:
+
 
 ### Gradle
 
 ```
-compile 'com.jeffg.live_text_view:live_text_view:1.0.0'
+implementation 'com.jeffg.live_text_view:live-text-view:1.0.0'
 ```
 
 ### Maven
@@ -18,7 +35,7 @@ compile 'com.jeffg.live_text_view:live_text_view:1.0.0'
 ```
 <dependency>
   <groupId>com.jeffg.live_text_view</groupId>
-  <artifactId>live_text_view</artifactId>
+  <artifactId>live-text-view</artifactId>
   <version>1.0.0</version>
   <type>pom</type>
 </dependency>
@@ -27,8 +44,8 @@ compile 'com.jeffg.live_text_view:live_text_view:1.0.0'
 ### Ivy
 
 ```
-<dependency org='com.jeffg.live_text_view' name='live_text_view' rev='1.0.0'>
-  <artifact name='live_text_view' ext='pom' ></artifact>
+<dependency org='com.jeffg.live_text_view' name='live-text-view' rev='1.0.0'>
+  <artifact name='live-text-view' ext='pom' />
 </dependency>
 ```
 
