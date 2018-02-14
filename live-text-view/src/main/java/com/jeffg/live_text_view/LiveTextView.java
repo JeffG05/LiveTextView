@@ -370,20 +370,22 @@ public class LiveTextView extends RelativeLayout {
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
-                    if(liveTextViewTTS.pitch != null) {
-                        textToSpeech.setPitch(liveTextViewTTS.pitch);
-                    }
-                    if(liveTextViewTTS.language != null) {
-                        textToSpeech.setLanguage(liveTextViewTTS.language);
-                    }
-                    if(liveTextViewTTS.audioAttributes != null) {
-                        textToSpeech.setAudioAttributes(liveTextViewTTS.audioAttributes);
-                    }
-                    if(liveTextViewTTS.speechRate != null) {
-                        textToSpeech.setSpeechRate(liveTextViewTTS.speechRate);
-                    }
-                    if(liveTextViewTTS.voice != null) {
-                        textToSpeech.setVoice(liveTextViewTTS.voice);
+                    if (liveTextViewTTS != null) {
+                        if (liveTextViewTTS.pitch != null) {
+                            textToSpeech.setPitch(liveTextViewTTS.pitch);
+                        }
+                        if (liveTextViewTTS.language != null) {
+                            textToSpeech.setLanguage(liveTextViewTTS.language);
+                        }
+                        if (liveTextViewTTS.audioAttributes != null) {
+                            textToSpeech.setAudioAttributes(liveTextViewTTS.audioAttributes);
+                        }
+                        if (liveTextViewTTS.speechRate != null) {
+                            textToSpeech.setSpeechRate(liveTextViewTTS.speechRate);
+                        }
+                        if (liveTextViewTTS.voice != null) {
+                            textToSpeech.setVoice(liveTextViewTTS.voice);
+                        }
                     }
                     textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
                         @Override

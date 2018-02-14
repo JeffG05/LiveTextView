@@ -26,5 +26,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    implementation 'com.jeffg.live_text_view:live-text-view:1.0.2'
+    implementation 'com.jeffg.live_text_view:live-text-view:1.0.4'
 }
