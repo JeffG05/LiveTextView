@@ -9,10 +9,13 @@ Android Library to display text while it is being spoken
 Follow one of these steps to import Live-Text-View into your project:
 
 
+The ```X.X.X``` stands for the current version, which can be found at the top 
+
+
 ### Gradle
 
 ```
-implementation 'com.jeffg.live_text_view:live-text-view:1.0.4'
+implementation 'com.jeffg.live_text_view:live-text-view:X.X.X'
 ```
 
 ### Maven
@@ -21,7 +24,7 @@ implementation 'com.jeffg.live_text_view:live-text-view:1.0.4'
 <dependency>
   <groupId>com.jeffg.live_text_view</groupId>
   <artifactId>live-text-view</artifactId>
-  <version>1.0.4</version>
+  <version>X.X.X</version>
   <type>pom</type>
 </dependency>
 ```
@@ -29,7 +32,7 @@ implementation 'com.jeffg.live_text_view:live-text-view:1.0.4'
 ### Ivy
 
 ```
-<dependency org='com.jeffg.live_text_view' name='live-text-view' rev='1.0.4'>
+<dependency org='com.jeffg.live_text_view' name='live-text-view' rev='X.X.X'>
   <artifact name='live-text-view' ext='pom' />
 </dependency>
 ```
