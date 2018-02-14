@@ -9,6 +9,6 @@
     <com.jeffg.live_text_view.LiveTextView
         android:id="@+id/liveTextView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>

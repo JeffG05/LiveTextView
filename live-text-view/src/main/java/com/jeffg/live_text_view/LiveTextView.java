@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.speech.tts.Voice;
@@ -41,10 +42,20 @@ public class LiveTextView extends RelativeLayout {
     boolean paused;
     boolean playing;
     LiveTextViewTTS liveTextViewTTS;
+    OnLoadListener onLoadListener;
+    OnFinishListener onFinishListener;
 
     ArrayList<String> text;
     TextToSpeech textToSpeech;
     int currentIndex;
+
+    public interface OnFinishListener {
+        void onFinish(LiveTextView liveTextView);
+    }
+
+    public interface OnLoadListener {
+        void onLoad(LiveTextView liveTextView);
+    }
 
 
     public LiveTextView(Context context) {
@@ -109,6 +120,20 @@ public class LiveTextView extends RelativeLayout {
         previous.setBackgroundColor(color);
         current.setBackgroundColor(color);
         next.setBackgroundColor(color);
+    }
+
+    public void setTypeface(Typeface tf) {
+        previous.setTypeface(tf);
+        current.setTypeface(tf);
+        next.setTypeface(tf);
+    }
+
+    public void setOnLoadListener(OnLoadListener listener) {
+        onLoadListener = listener;
+    }
+
+    public void setOnFinishListener (OnFinishListener listener) {
+        onFinishListener = listener;
     }
 
     public void animate(boolean bool) {
@@ -180,7 +205,6 @@ public class LiveTextView extends RelativeLayout {
                 public void run() {
                     YoYo.with(Techniques.FadeOutUp)
                             .duration(300)
-                            .delay(0)
                             .onEnd(new YoYo.AnimatorCallback() {
                                 @Override
                                 public void call(Animator animator) {
@@ -199,7 +223,6 @@ public class LiveTextView extends RelativeLayout {
 
                     YoYo.with(Techniques.FadeOutUp)
                             .duration(300)
-                            .delay(100)
                             .onEnd(new YoYo.AnimatorCallback() {
                                 @Override
                                 public void call(Animator animator) {
@@ -216,7 +239,6 @@ public class LiveTextView extends RelativeLayout {
                             .playOn((View) current);
                     YoYo.with(Techniques.FadeOutUp)
                             .duration(300)
-                            .delay(200)
                             .onEnd(new YoYo.AnimatorCallback() {
                                 @Override
                                 public void call(Animator animator) {
@@ -241,7 +263,6 @@ public class LiveTextView extends RelativeLayout {
                 public void run() {
                     YoYo.with(Techniques.FadeOutDown)
                             .duration(300)
-                            .delay(0)
                             .onEnd(new YoYo.AnimatorCallback() {
                                 @Override
                                 public void call(Animator animator) {
@@ -260,7 +281,6 @@ public class LiveTextView extends RelativeLayout {
 
                     YoYo.with(Techniques.FadeOutDown)
                             .duration(300)
-                            .delay(100)
                             .onEnd(new YoYo.AnimatorCallback() {
                                 @Override
                                 public void call(Animator animator) {
@@ -277,7 +297,6 @@ public class LiveTextView extends RelativeLayout {
                             .playOn((View) current);
                     YoYo.with(Techniques.FadeOutDown)
                             .duration(300)
-                            .delay(200)
                             .onEnd(new YoYo.AnimatorCallback() {
                                 @Override
                                 public void call(Animator animator) {
@@ -325,6 +344,14 @@ public class LiveTextView extends RelativeLayout {
         if (textToSpeech != null) {
             textToSpeech.stop();
             textToSpeech.shutdown();
+            playing = false;
+        }
+    }
+
+    public void reset() {
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
             currentIndex = 0;
             playing = false;
         }
@@ -337,6 +364,7 @@ public class LiveTextView extends RelativeLayout {
     public void fast_forwards() {
         pause();
         next();
+
     }
 
     public boolean isPlaying() {
@@ -350,7 +378,7 @@ public class LiveTextView extends RelativeLayout {
 
     private void next() {
 
-        currentIndex = currentIndex + 1;
+        currentIndex = Math.min(currentIndex + 1, text.size() - 1);
 
         if (currentIndex >= text.size()) {
             stop();
@@ -370,6 +398,9 @@ public class LiveTextView extends RelativeLayout {
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
+                    if (onLoadListener != null) {
+                        onLoadListener.onLoad(LiveTextView.this);
+                    }
                     if (liveTextViewTTS != null) {
                         if (liveTextViewTTS.pitch != null) {
                             textToSpeech.setPitch(liveTextViewTTS.pitch);
@@ -396,9 +427,16 @@ public class LiveTextView extends RelativeLayout {
                         @Override
                         public void onDone(String s) {
                             Log.i("UTTERANCE", s);
-                            if (!paused) {
-                                next();
+                            if (currentIndex == text.size() - 1) {
+                                if (onFinishListener != null) {
+                                    onFinishListener.onFinish(LiveTextView.this);
+                                }
+                            } else {
+                                if (!paused) {
+                                    next();
+                                }
                             }
+
                         }
 
                         @Override

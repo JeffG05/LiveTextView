@@ -14,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/JeffG05/LiveTextView'
     gitUrl = 'https://github.com/JeffG05/LiveTextView.git'
 
-    libraryVersion = "1.0.4"
+    libraryVersion = "1.0.9"
 
     developerId = "jeffg05"
     developerName = "Jeff Gugelmann"
