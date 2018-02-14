@@ -6,21 +6,6 @@ Android Library to display text while it is being spoken
 
 ## Getting Started
 
-### First
-Enter this in your build.gradle (Project)
-
-```
-allprojects {
-    repositories {
-        maven {
-            url "https://dl.bintray.com/jeffg05/Live-Text-View"
-        }
-    }
-}
-```
-
-### Then
-
 Follow one of these steps to import Live-Text-View into your project:
 
 
