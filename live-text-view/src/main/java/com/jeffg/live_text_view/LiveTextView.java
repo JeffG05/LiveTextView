@@ -7,6 +7,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.speech.tts.Voice;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -39,6 +40,7 @@ public class LiveTextView extends RelativeLayout {
     boolean animate;
     boolean paused;
     boolean playing;
+    LiveTextViewTTS liveTextViewTTS;
 
     ArrayList<String> text;
     TextToSpeech textToSpeech;
@@ -111,6 +113,10 @@ public class LiveTextView extends RelativeLayout {
 
     public void animate(boolean bool) {
         animate = bool;
+    }
+
+    public void setLiveTextViewTTS(LiveTextViewTTS tts) {
+        liveTextViewTTS = tts;
     }
 
     public void setSmallTextSize(int size) {
@@ -364,6 +370,21 @@ public class LiveTextView extends RelativeLayout {
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
+                    if(liveTextViewTTS.pitch != null) {
+                        textToSpeech.setPitch(liveTextViewTTS.pitch);
+                    }
+                    if(liveTextViewTTS.language != null) {
+                        textToSpeech.setLanguage(liveTextViewTTS.language);
+                    }
+                    if(liveTextViewTTS.audioAttributes != null) {
+                        textToSpeech.setAudioAttributes(liveTextViewTTS.audioAttributes);
+                    }
+                    if(liveTextViewTTS.speechRate != null) {
+                        textToSpeech.setSpeechRate(liveTextViewTTS.speechRate);
+                    }
+                    if(liveTextViewTTS.voice != null) {
+                        textToSpeech.setVoice(liveTextViewTTS.voice);
+                    }
                     textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
                         @Override
                         public void onStart(String s) {
